@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Billboarder</title>
+<meta charset="utf-8">
+<meta name="viewport" value="width=550">
+
+<link rel="stylesheet" type="text/css" href="https://davidfmiller.github.io/man/man.css">
+<!-- <link rel="stylesheet" type="text/css" href="build/popover.css"> -->
+<link rel="stylesheet" type="text/css" href="build/billboard.css">
+<link rel="stylesheet" type="text/css" href="index.css">
+
+</head>
+<body>
+<div class="rmr-billboard">
+  <h1>Billboarder</h1>
+</div>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+
+<script src="build/billboard.bundle.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('hi!');
+  const billboard = document.querySelector('.rmr-billboard');
+  if (billboard) {
+    new Billboard({ node: billboard, margin: 25 });
+  }
+});
+</script>
+
+</body>
+</html>
