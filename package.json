@@ -2,7 +2,7 @@
   "name": "rmr-billboard",
   "version": "0.0.1",
   "description": "Billboard",
-  "url": "https://davidfmiller.github.io/billboard/",
+  "url": "https://davidfmiller.github.io/rmr-billboard/",
   "license": "ISC",
   "author": {
     "name": "davidfmiller",
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/davidfmiller/billboard.git"
+    "url": "https://github.com/davidfmiller/rmr-billboard.git"
   },
   "bugs": {
-    "url": "https://github.com/davidfmiller/billboard/issues"
+    "url": "https://github.com/davidfmiller/rmr-billboard/issues"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
