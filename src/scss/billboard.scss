@@ -16,7 +16,7 @@
     opacity: 0.5;
     position: absolute;
     right: 0;
-    transition: transform 0.2s;
+    transition: transform 0.2s, opacity 0.2s;
     width: 30px;
 
     &:hover {
@@ -30,5 +30,19 @@
       background-image: url(data:image/svg+xml;charset=UTF-8;base64,PHN2ZyB3aWR0aD0iMjIyIiBoZWlnaHQ9IjIyMiIgdmlld0JveD0iMCAwIDIyMiAyMjIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0iIzIyMiIgZD0iTS0uMzg2IDY4LjA4MWwxMTEuMDQ3IDgzLjg2MkwyMjEuNjE0IDY4LjA4VjMwLjU3bC0xMTAuOTUzIDgzLjg3MUwtLjM4NiAzMC41N3oiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==);
     }
   }
+}
 
+body.rmr-js.rmr-nohover {
+  .rmr-billboard {
+    .rmr-billboard-scroll {
+      opacity: 0;
+    }
+  }
+
+  &.rmr-hover .rmr-billboard .rmr-billboard-scroll {
+    opacity: 0.2;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
