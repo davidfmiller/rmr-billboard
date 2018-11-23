@@ -11,6 +11,7 @@ html,body {
   align-items: center;
   display: flex;
   background: #000;
+
 }
 
 .rmr-billboard > div:first-child {
@@ -20,5 +21,6 @@ html,body {
 
 h1 {
   text-align: center;
+  color: #fff;
   width: 100%;
 }

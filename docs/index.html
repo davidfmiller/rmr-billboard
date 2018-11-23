@@ -6,7 +6,6 @@
 <meta name="viewport" value="width=550">
 
 <link rel="stylesheet" type="text/css" href="https://davidfmiller.github.io/man/man.css">
-<!-- <link rel="stylesheet" type="text/css" href="build/popover.css"> -->
 <link rel="stylesheet" type="text/css" href="build/billboard.css">
 <link rel="stylesheet" type="text/css" href="assets/index.css">
 
@@ -14,37 +13,34 @@
 <body>
 <div class="rmr-billboard">
   <div>
-    <h1>Billboarder</h1>
+    <h1>rmr-billboard</h1>
   </div>
 </div>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p><a href="https://github.com/davidfmiller/rmr-billboard/">rmr-billboard</a></p>
+
+<div id="man">
+  <p>
+    <a href="https://github.com/davidfmiller/rmr-billboard/">rmr-billboard</a> is a simple JavaScript &amp; CSS library to resize a node to fill the browser’s viewport (and add a chevron that, when clicked, will scroll the browser to the billboard’s next sibling).
+  </p>
+  <pre><span></span><span class="nt">const</span> <span class="nt">board</span> <span class="o">=</span> <span class="nt">new</span> <span class="nt">Billboard</span><span class="o">(</span><span class="p">{</span> <span class="c">/* theme: &#39;dark&#39; */</span> <span class="p">}</span><span class="o">);</span></pre>
+
+  <p>(The fancy image pre-loading on this page is handled by 
+    <a href="https://github.com/davidfmiller/rmr-backdrop" title="rmr-backdrop">rmr-backdrop</a>.)
+  </p>
+  <hr>
+  <footer>
+    <p>
+      <a href="https://readmeansrun.com" title="READMEANSRUN">READMEANSRUN</a>
+    </p>
+  </footer>
+</div>
 
 <script src="assets/backdrop.bundle.js"></script>
 <script src="build/billboard.bundle.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const billboard = document.querySelector('.rmr-billboard');
-  if (billboard) {
-    new Billboard({ node: billboard /*, theme: 'dark'*/ });
-  }
-  
+
+  const board = new Billboard({ /* theme: 'dark' */ });
+
   const dropper = new Backdrop({
     node: '.rmr-billboard',
     speed: 2,
