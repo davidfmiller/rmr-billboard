@@ -9,7 +9,7 @@ const config = {
 //  mode: 'development',
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, 'docs/build/'),
+    path: path.resolve(__dirname, 'build/'),
     filename: 'billboard.bundle.js'
   },
   watch : true,

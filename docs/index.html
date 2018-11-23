@@ -7,13 +7,15 @@
 
 <link rel="stylesheet" type="text/css" href="https://davidfmiller.github.io/man/man.css">
 <!-- <link rel="stylesheet" type="text/css" href="build/popover.css"> -->
-<link rel="stylesheet" type="text/css" href="build/billboard.css">
-<link rel="stylesheet" type="text/css" href="index.css">
+<link rel="stylesheet" type="text/css" href="../build/billboard.css">
+<link rel="stylesheet" type="text/css" href="assets/index.css">
 
 </head>
 <body>
 <div class="rmr-billboard">
-  <h1>Billboarder</h1>
+  <div>
+    <h1>Billboarder</h1>
+  </div>
 </div>
 <p>.</p>
 <p>.</p>
@@ -34,13 +36,22 @@
 <p>.</p>
 <p><a href="https://github.com/davidfmiller/rmr-billboard/">rmr-billboard</a></p>
 
-<script src="build/billboard.bundle.js"></script>
+<script src="assets/backdrop.bundle.js"></script>
+<script src="../build/billboard.bundle.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const billboard = document.querySelector('.rmr-billboard');
   if (billboard) {
-    new Billboard({ node: billboard, theme: 'dark' });
+    new Billboard({ node: billboard /*, theme: 'dark'*/ });
   }
+  
+  const dropper = new Backdrop({
+    node: '.rmr-billboard',
+    speed: 2,
+    styles: { size: 'cover', attachment: 'scroll', position: '50% 50%' }
+  });
+  dropper.drop({src: 'https://dfm.photography/assets/img/photos/web.desktop/luccata.jpg' });
+  
 });
 </script>
 
