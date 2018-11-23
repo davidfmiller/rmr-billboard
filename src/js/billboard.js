@@ -10,7 +10,7 @@
   /**
     Billboard
     A billboard for your page
-    @param {object} config - margin, theme, node
+    @param {object} config - theme {"dark"}, node {string|node}
    */
   Billboard = function(config) {
 
@@ -21,7 +21,6 @@
 
     const
     scroller = RMR.Node.create('div', { class: 'rmr-billboard-scroll' }),
-    margin = config.hasOwnProperty('margin') ? parseInt(config.margin, 10) : 0,
     theme = config.hasOwnProperty('theme') ? config.theme : null,
     height = window.innerHeight;
 
@@ -31,11 +30,6 @@
 
     node.appendChild(scroller);
     node.style.minHeight = height + 'px';
-
-    scroller.style.bottom = margin + 'px';
-    if (theme) {
-      node.classList.add(theme);
-    }
   };
 
   module.exports = Billboard;
