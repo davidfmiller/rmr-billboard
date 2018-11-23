@@ -29,6 +29,9 @@
       self.scroll();
     });
 
+    if (theme) {
+      node.classList.add(theme);
+    }
     node.appendChild(scroller);
     node.style.minHeight = height + 'px';
   };

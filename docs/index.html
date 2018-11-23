@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Billboard</title>
+<title>rmr-billboard</title>
 <meta charset="utf-8">
 <meta name="viewport" value="width=550">
 
@@ -13,7 +13,7 @@
 <body>
 <div class="rmr-billboard">
   <div>
-    <h1>rmr-billboard</h1>
+    <h1><span>rmr-billboard</span></h1>
   </div>
 </div>
 
@@ -22,6 +22,10 @@
     <a href="https://github.com/davidfmiller/rmr-billboard/">rmr-billboard</a> is a simple JavaScript &amp; CSS library to resize a node to fill the browser’s viewport (and add a chevron that, when clicked, will scroll the browser to the billboard’s next sibling).
   </p>
   <pre><span></span><span class="nt">const</span> <span class="nt">board</span> <span class="o">=</span> <span class="nt">new</span> <span class="nt">Billboard</span><span class="o">(</span><span class="p">{</span> <span class="c">/* theme: &#39;dark&#39; */</span> <span class="p">}</span><span class="o">);</span></pre>
+
+  <p>Scrolling to the node’s sibling can also be accomplished programmatically via the <code>scroll</code> method on the <code>Billboard</code> object: </p>
+
+  <pre><span class="nx">board</span><span class="p">.</span><span class="nx">scroll</span><span class="p">();</span></pre>
 
   <p>(The fancy image pre-loading on this page is handled by 
     <a href="https://github.com/davidfmiller/rmr-backdrop" title="rmr-backdrop">rmr-backdrop</a>.)
@@ -39,14 +43,17 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-  const board = new Billboard({ /* theme: 'dark' */ });
-
-  const dropper = new Backdrop({
+  const
+  board = new Billboard({ /* theme: 'dark' */ }),
+  h1 = document.querySelector('h1'),
+  dropper = new Backdrop({
     node: '.rmr-billboard',
     speed: 2,
     styles: { size: 'cover', attachment: 'scroll', position: '50% 50%' }
   });
   dropper.drop({src: 'https://dfm.photography/assets/img/photos/web.desktop/luccata.jpg' });
+  
+  h1.addEventListener('click', function(e) { board.scroll(); });
   
 });
 </script>
