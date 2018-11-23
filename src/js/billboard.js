@@ -35,8 +35,13 @@
     node.appendChild(scroller);
     node.style.minHeight = height + 'px';
 
-    const margin = config.hasOwnProperty('margin') ? parseInt(config.margin) : '15';
+    const margin = config.hasOwnProperty('margin') ? parseInt(config.margin, 10) : 0;
     scroller.style.bottom = margin + 'px';
+
+    const theme = config.hasOwnProperty('theme') ? config.theme : null;
+    if (theme) {
+      node.classList.add(theme);
+    }
   };
 
   module.exports = Billboard;
