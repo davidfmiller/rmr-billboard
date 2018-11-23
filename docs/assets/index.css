@@ -26,6 +26,15 @@ h1 {
   cursor: pointer;
 }
 
+h1 span {
+  background: rgba(0,0,0,0.3);
+  border-radius: 5px;
+  display: inline-block;
+  padding: 0 10px;
+  transition: background 0.1s;
+}
+
 h1 span:hover {
-  text-decoration: underline;
+
+  background: #000;
 }
