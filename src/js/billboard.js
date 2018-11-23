@@ -4,19 +4,14 @@
 
   'use strict';
 
-  /**
-   * rmr-util
-   *
-   * JS for your browser
-   *
-   *
-   *
-   */
-
-
   const
   RMR = require('rmr-util'),
-  
+
+  /**
+    Billboard
+    A billboard for your page
+    @param {object} config - margin, theme, node
+   */
   Billboard = function(config) {
 
     const node = RMR.Node.get(config.node);
@@ -26,6 +21,8 @@
 
     const
     scroller = RMR.Node.create('div', { class: 'rmr-billboard-scroll' }),
+    margin = config.hasOwnProperty('margin') ? parseInt(config.margin, 10) : 0,
+    theme = config.hasOwnProperty('theme') ? config.theme : null,
     height = window.innerHeight;
 
     scroller.addEventListener('click', function() {
@@ -35,10 +32,7 @@
     node.appendChild(scroller);
     node.style.minHeight = height + 'px';
 
-    const margin = config.hasOwnProperty('margin') ? parseInt(config.margin, 10) : 0;
     scroller.style.bottom = margin + 'px';
-
-    const theme = config.hasOwnProperty('theme') ? config.theme : null;
     if (theme) {
       node.classList.add(theme);
     }
