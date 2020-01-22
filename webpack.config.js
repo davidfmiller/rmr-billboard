@@ -5,7 +5,7 @@ const
   webpack = require('webpack');
 
 const config = {
-  entry: './src/js/index.js',
+  entry: './src/scripts/index.js',
 //  mode: 'development',
   mode: 'production',
   output: {

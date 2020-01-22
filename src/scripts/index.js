@@ -5,6 +5,6 @@
 
   'use strict';
 
-  window.Billboard = require('./billboard.js');
+  window.Billboard = require('./rmr-billboard.js');
 
 }());
