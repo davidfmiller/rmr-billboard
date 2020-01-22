@@ -16,7 +16,8 @@
 
     const node = RMR.Node.get('.rmr-billboard');
     if (! node) {
-      throw new Error('No billboard <.rmr-billboard> found');
+      console.error('No billboard <.rmr-billboard> found');
+      return;
     }
 
     const
@@ -29,11 +30,13 @@
       self.scroll();
     });
 
+    node.style.minHeight = height + 'px';
     if (theme) {
       node.classList.add(theme);
     }
-    node.appendChild(scroller);
-    node.style.minHeight = height + 'px';
+    if (config.scroller) {
+      node.appendChild(scroller);
+    }
   };
 
   Billboard.prototype.scroll = function() {
