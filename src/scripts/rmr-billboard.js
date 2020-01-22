@@ -6,6 +6,9 @@
 
   const
   RMR = require('rmr-util'),
+  CONST = {
+    billboard: 'rmr-billboard'
+  },
 
   /**
     Billboard
@@ -14,9 +17,9 @@
    */
   Billboard = function(config) {
 
-    const node = RMR.Node.get('.rmr-billboard');
+    const node = RMR.Node.get('.' + CONST.billboard);
     if (! node) {
-      console.error('No billboard <.rmr-billboard> found');
+      console.error('No billboard `.' + CONST.billboard + '` found');
       return;
     }
 
@@ -26,21 +29,28 @@
     theme = config.hasOwnProperty('theme') ? config.theme : null,
     height = window.innerHeight;
 
-    scroller.addEventListener('click', function() {
-      self.scroll();
-    });
-
     node.style.minHeight = height + 'px';
     if (theme) {
       node.classList.add(theme);
     }
+
+    if (config.resize) {
+      window.addEventListener('resize', () => {
+        console.log('resize');
+        RMR.Node.get('.' + CONST.billboard).style.minHeight = window.innerHeight + 'px';
+      });
+    }
+
     if (config.scroller) {
+      scroller.addEventListener('click', () => {
+        self.scroll();
+      });
       node.appendChild(scroller);
     }
   };
 
-  Billboard.prototype.scroll = function() {
-    const height = parseInt(window.getComputedStyle(RMR.Node.get('.rmr-billboard')).height, 10);
+  Billboard.prototype.scroll = () => {
+    const height = parseInt(window.getComputedStyle(RMR.Node.get('.' + CONST.billboard)).height, 10);
     RMR.Browser.scrollTo(height, 200);
   };
 
