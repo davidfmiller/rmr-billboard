@@ -9,6 +9,10 @@
   CONST = {
     billboard: 'rmr-billboard'
   },
+  getHeight = function(node, margin) {
+    const top = node.previousElementSibling ? RMR.Node.getRect(node).top : 0;
+    return window.innerHeight - margin - top;
+  },
 
   /**
     Billboard
@@ -24,13 +28,11 @@
     }
     this.margin = RMR.Object.has(config, 'margin') && config.margin ? parseInt(config.margin, 10) : 0;
 
-console.log(this.margin);
-
     const
     self = this,
     scroller = RMR.Node.create('div', { class: 'rmr-billboard-scroll' }),
     theme = config.hasOwnProperty('theme') ? config.theme : null,
-    height = window.innerHeight;
+    height = getHeight(node, this.margin);
 
     node.style.minHeight = (height - this.margin) + 'px';
     if (theme) {
@@ -39,20 +41,26 @@ console.log(this.margin);
 
     if (config.resize) {
       window.addEventListener('resize', () => {
-        RMR.Node.get('.' + CONST.billboard).style.minHeight = (window.innerHeight - self.margin) + 'px';
+        const node = RMR.Node.get('.' + CONST.billboard);
+        node.style.minHeight = getHeight(node, self.margin) + 'px'; // (window.innerHeight - self.margin) + 'px';
       });
     }
 
     if (config.scroller) {
-      scroller.addEventListener('click', () => {
+      scroller.addEventListener('click', function() {
         self.scroll();
       });
       node.appendChild(scroller);
     }
+
+
   };
 
-  Billboard.prototype.scroll = () => {
-    const height = parseInt(window.getComputedStyle(RMR.Node.get('.' + CONST.billboard)).height, 10) - this.margin;
+  Billboard.prototype.scroll = function() {
+  console.log(this);
+
+    const node = RMR.Node.get('.' + CONST.billboard);
+    const height = parseInt(RMR.Node.getRect(node).bottom, 10) - this.margin;
     RMR.Browser.scrollTo(height, 200);
   };
 
