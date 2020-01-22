@@ -34,7 +34,7 @@
     theme = config.hasOwnProperty('theme') ? config.theme : null,
     height = getHeight(node, this.margin);
 
-    node.style.minHeight = (height - this.margin) + 'px';
+    node.style.minHeight = height + 'px';
     if (theme) {
       node.classList.add(theme);
     }
