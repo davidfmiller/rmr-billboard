@@ -34,7 +34,7 @@
     theme = config.hasOwnProperty('theme') ? config.theme : null,
     height = getHeight(node, this.margin);
 
-    node.style.minHeight = height + 'px';
+    node.style.height = height + 'px';
     if (theme) {
       node.classList.add(theme);
     }
@@ -42,7 +42,7 @@
     if (config.resize) {
       window.addEventListener('resize', () => {
         const node = RMR.Node.get('.' + CONST.billboard);
-        node.style.minHeight = getHeight(node, self.margin) + 'px'; // (window.innerHeight - self.margin) + 'px';
+        node.style.height = getHeight(node, self.margin) + 'px'; // (window.innerHeight - self.margin) + 'px';
       });
     }
 
