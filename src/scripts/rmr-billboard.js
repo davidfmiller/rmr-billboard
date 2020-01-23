@@ -9,10 +9,6 @@
   CONST = {
     billboard: 'rmr-billboard'
   },
-  getHeight = function(node, margin) {
-//    const top = RMR.Node.getRect(node.parentNode).top;
-    return window.innerHeight - margin;
-  },
 
   /**
     Billboard
@@ -25,40 +21,28 @@
       config.node = '.' + CONST.billboard;
     }
 
-    const node = RMR.Node.get(config.node);
-    if (! node) {
+    this.node = RMR.Node.get(config.node);
+    if (! this.node) {
       console.error('No billboard `.' + CONST.billboard + '` found');
       return;
     }
 
-    node.classList.add(CONST.billboard);
+    this.node.classList.add(CONST.billboard);
     this.margin = RMR.Object.has(config, 'margin') && config.margin ? parseInt(config.margin, 10) : 0;
     this.listener = RMR.Object.has(config, 'listener') ? config.listener : null;
 
     const
     self = this,
     scroller = RMR.Node.create('div', { class: 'rmr-scroller' }),
-    theme = config.hasOwnProperty('theme') ? config.theme : null,
-    height = getHeight(node, this.margin);
+    theme = config.hasOwnProperty('theme') ? config.theme : null;
 
-    node.style.height = height + 'px';
-    self.listener(height);
     if (theme) {
-      node.classList.add(theme);
+      this.node.classList.add(theme);
     }
 
-    if (config.resize) {
+    if (RMR.Object.has(config, 'resize') && config.resize) {
       window.addEventListener('resize', () => {
-        const
-          node = RMR.Node.get('.' + CONST.billboard),
-          height = parseInt(getHeight(node, self.margin), 10);
-
-        node.style.height = height + 'px';
-        if (self.listener) {
-          requestAnimationFrame(() => {
-            self.listener(height);
-          });
-        }
+        requestAnimationFrame(() => { self.resize(); });
       });
     }
 
@@ -66,15 +50,26 @@
       scroller.addEventListener('click', function() {
         self.scroll();
       });
-      node.appendChild(scroller);
+      this.node.appendChild(scroller);
     }
 
+    // set initial size
+    this.resize();
+  };
 
+  Billboard.prototype.resize = function() {
+    const height = window.innerHeight - this.margin;
+    this.node.style.height = height + 'px';
+    if (this.listener) {
+      this.listener(height);
+    }
   };
 
   Billboard.prototype.scroll = function() {
-    const node = RMR.Node.get('.' + CONST.billboard);
-    const height = parseInt(RMR.Node.getRect(node).bottom, 10) - this.margin;
+    const
+      node = RMR.Node.get('.' + CONST.billboard),
+      height = parseInt(RMR.Node.getRect(node).bottom, 10) - this.margin;
+
     RMR.Browser.scrollTo(height, 200);
   };
 
