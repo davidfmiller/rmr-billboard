@@ -21,11 +21,17 @@
    */
   Billboard = function(config) {
 
-    const node = RMR.Node.get('.' + CONST.billboard);
+    if (! RMR.Object.has(config, 'node')) {
+      config.node = '.' + CONST.billboard;
+    }
+
+    const node = RMR.Node.get(config.node);
     if (! node) {
       console.error('No billboard `.' + CONST.billboard + '` found');
       return;
     }
+
+    node.classList.add(CONST.billboard);
     this.margin = RMR.Object.has(config, 'margin') && config.margin ? parseInt(config.margin, 10) : 0;
 
     const
@@ -57,8 +63,6 @@
   };
 
   Billboard.prototype.scroll = function() {
-  console.log(this);
-
     const node = RMR.Node.get('.' + CONST.billboard);
     const height = parseInt(RMR.Node.getRect(node).bottom, 10) - this.margin;
     RMR.Browser.scrollTo(height, 200);
