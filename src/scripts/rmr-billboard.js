@@ -30,7 +30,7 @@
 
     const
     self = this,
-    scroller = RMR.Node.create('div', { class: 'rmr-billboard-scroll' }),
+    scroller = RMR.Node.create('div', { class: 'rmr-scroller' }),
     theme = config.hasOwnProperty('theme') ? config.theme : null,
     height = getHeight(node, this.margin);
 

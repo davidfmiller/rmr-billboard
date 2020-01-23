@@ -1,7 +1,7 @@
 .rmr-billboard {
   position: relative;
 
-  .rmr-billboard-scroll {
+  .rmr-scroller {
 
     bottom: 0;
     // default to light.svg
@@ -26,7 +26,7 @@
   }
 
   &.dark {
-    .rmr-billboard-scroll {
+    .rmr-scroller {
       background-image: url(data:image/svg+xml;charset=UTF-8;base64,PHN2ZyB3aWR0aD0iMjIyIiBoZWlnaHQ9IjIyMiIgdmlld0JveD0iMCAwIDIyMiAyMjIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0iIzIyMiIgZD0iTS0uMzg2IDY4LjA4MWwxMTEuMDQ3IDgzLjg2MkwyMjEuNjE0IDY4LjA4VjMwLjU3bC0xMTAuOTUzIDgzLjg3MUwtLjM4NiAzMC41N3oiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==);
     }
   }
@@ -35,12 +35,12 @@
 body.rmr-js {
 
   // hide scroll trigger if the mouse is outside the browser window
-  &.rmr-nohover .rmr-billboard .rmr-billboard-scroll {
+  &.rmr-nohover .rmr-billboard .rmr-scroller {
     opacity: 0;
   }
 
   // partially show scroll trigger if the mouse is inside the browser window
-  &.rmr-hover .rmr-billboard .rmr-billboard-scroll {
+  &.rmr-hover .rmr-billboard .rmr-scroller {
     opacity: 0.2;
 
     // and show completely when the trigger is hovered over
