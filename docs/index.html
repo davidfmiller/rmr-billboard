@@ -11,11 +11,13 @@
 
 </head>
 <body>
-<div class="rmr-billboard">
 
+<div style="margin-top: 25px;">
+<div class="rmr-billboard">
   <div>
     <h1><span>rmr-billboard</span></h1>
   </div>
+</div>
 </div>
 
 <div id="man">
@@ -46,7 +48,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   const
-  board = new Billboard({ scroller: true, resize: true, margin: 300 /* theme: 'dark' */ }),
+  board = new Billboard({ scroller: true, resize: true, margin: 0 /* theme: 'dark' */ }),
   h1 = document.querySelector('h1'),
   dropper = new Backdrop({
     node: '.rmr-billboard',

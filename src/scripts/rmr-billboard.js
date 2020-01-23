@@ -10,7 +10,7 @@
     billboard: 'rmr-billboard'
   },
   getHeight = function(node, margin) {
-    const top = node.previousElementSibling ? RMR.Node.getRect(node).top : 0;
+    const top = RMR.Node.getRect(node.parentNode).top;
     return window.innerHeight - margin - top;
   },
 
