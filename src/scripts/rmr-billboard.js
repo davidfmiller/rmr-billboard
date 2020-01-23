@@ -33,6 +33,7 @@
 
     node.classList.add(CONST.billboard);
     this.margin = RMR.Object.has(config, 'margin') && config.margin ? parseInt(config.margin, 10) : 0;
+    this.listener = RMR.Object.has(config, 'listener') ? config.listener : null;
 
     const
     self = this,
@@ -41,14 +42,23 @@
     height = getHeight(node, this.margin);
 
     node.style.height = height + 'px';
+    self.listener(height);
     if (theme) {
       node.classList.add(theme);
     }
 
     if (config.resize) {
       window.addEventListener('resize', () => {
-        const node = RMR.Node.get('.' + CONST.billboard);
-        node.style.height = getHeight(node, self.margin) + 'px'; // (window.innerHeight - self.margin) + 'px';
+        const
+          node = RMR.Node.get('.' + CONST.billboard),
+          height = parseInt(getHeight(node, self.margin), 10);
+
+        node.style.height = height + 'px';
+        if (self.listener) {
+          requestAnimationFrame(() => {
+            self.listener(height);
+          });
+        }
       });
     }
 

@@ -47,7 +47,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   const
-  board = new Billboard({ scroller: true, resize: true, margin: 200 /* theme: 'dark' */ }),
+  board = new Billboard({ scroller: true, resize: true, margin: 200, listener: function(height) { console.log(height); } /* theme: 'dark' */ }),
   h1 = document.querySelector('h1'),
   dropper = new Backdrop({
     node: '.rmr-billboard',
