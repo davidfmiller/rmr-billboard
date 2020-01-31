@@ -58,8 +58,16 @@
   };
 
   Billboard.prototype.resize = function() {
+
     const height = window.innerHeight - this.margin;
     this.node.style.height = height + 'px';
+
+    const panes = RMR.Node.getAll(':scope > .rmr-pane', this.node);
+    panes.map((n) => {
+//      console.log(n, height);
+      n.style.height = height + 'px';
+    });
+
     if (this.listener) {
       this.listener(height);
     }

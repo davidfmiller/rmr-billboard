@@ -8,15 +8,19 @@ html,body {
 }
 
 .rmr-billboard {
-  align-items: center;
-  display: flex;
   background: #000;
-
 }
 
-.rmr-billboard > div:first-child {
+.rmr-billboard > .rmr-pane {
+  align-items: center;
+  display: flex;
+  position: relative;
   z-index: 2;
   width: 100%;
+}
+
+.rmr-billboard > .rmr-pane:nth-child(2) {
+  background: rgba(0,0,0,0.5);
 }
 
 h1 {

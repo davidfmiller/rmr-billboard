@@ -1,5 +1,6 @@
 .rmr-billboard {
   position: relative;
+  overflow: auto;
 
   .rmr-scroller {
 
@@ -18,6 +19,7 @@
     right: 0;
     transition: transform 0.2s, opacity 0.2s;
     width: 30px;
+    z-index: 2;
 
     &:hover {
       opacity: 1;
