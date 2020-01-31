@@ -48,11 +48,12 @@
 <script src="assets/backdrop.bundle.js"></script>
 <script src="build/billboard.bundle.js"></script>
 <script>
+let board;
 document.addEventListener('DOMContentLoaded', function() {
 
-  const
-  board = new Billboard({ scroller: true, resize: true, margin: 200, listener: function(height) { console.log(height); } /* theme: 'dark' */ }),
-  h1 = document.querySelector('h1'),
+  board = new Billboard({ scroller: true, resize: true, margin: 200, listener: function(height) { console.log(height); } /* theme: 'dark' */ });
+
+  const h1 = document.querySelector('h1'),
   dropper = new Backdrop({
     node: '.rmr-billboard',
     speed: 2,

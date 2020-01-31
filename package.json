@@ -1,6 +1,6 @@
 {
   "name": "rmr-billboard",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Billboard",
   "url": "https://davidfmiller.github.io/rmr-billboard/",
   "license": "ISC",
@@ -27,6 +27,6 @@
     "webpack": "^3.10.0"
   },
   "dependencies": {
-    "rmr-util": "^1.1.33"
+    "rmr-util": "^1.1.61"
   }
 }

@@ -77,6 +77,29 @@
     }
   };
 
+  /**
+   
+   @return true if navigation was successful, false if not
+   */
+  Billboard.prototype.goToPane = function(index) {
+    index = parseInt(index, 10);
+
+    const
+      board = RMR.Node.get('.rmr-billboard'),
+      panes = RMR.Node.getAll(':scope > .rmr-pane', board),
+      pane = panes.length > index ? panes[index] : null,
+      height = board ? RMR.Node.getRect(board).height : 0;
+
+    if (! pane) {
+      console.error('Invalid rmr-billboard pane index `' + index +'`; only ' + panes.length + ' panes exist');
+      return false;
+    }
+
+    RMR.Node.scrollTo(board, index * height);
+    return true;
+  };
+
+
   Billboard.prototype.scroll = function() {
     const
       node = RMR.Node.get('.' + CONST.billboard),
@@ -85,6 +108,7 @@
     RMR.Browser.scrollTo(height, 200);
   };
 
+  console.log(RMR);
   module.exports = Billboard;
 
 })();
