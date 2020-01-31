@@ -1,6 +1,45 @@
+@import "../../node_modules/rmr-util/src/styles/rmr-vars";
+
 .rmr-billboard {
   position: relative;
   overflow: auto;
+
+  & > .rmr-pane {
+    width: 100%;
+    position: relative;
+  }
+
+//   &:not(.rmr-init) {
+//     &.rmr-cross > .rmr-pane:first-child {
+//         opacity: 1;
+//     }
+//   }
+
+  &.rmr-cross {
+    overflow: hidden;
+    > .rmr-pane {
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity $rmr-transition-duration;
+
+      &.rmr-on {
+        z-index: 1;
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  &.rmr-scroll {
+
+    > .rmr-pane {
+      
+    }
+  }
 
   .rmr-scroller {
 

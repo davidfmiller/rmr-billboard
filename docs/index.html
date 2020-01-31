@@ -17,7 +17,7 @@
     <h1><span>rmr-billboard</span></h1>
   </div>
   <div class="rmr-pane">
-    <h1><span>rmr-billboard</span></h1>
+    <h1><span>Pane #2</span></h1>
   </div>
 
 </div>
@@ -51,7 +51,7 @@
 let board;
 document.addEventListener('DOMContentLoaded', function() {
 
-  board = new Billboard({ scroller: true, resize: true, margin: 200, listener: function(height) { console.log(height); } /* theme: 'dark' */ });
+  board = new Billboard({type: 'scroll', scroller: true, resize: true, margin: 200, listener: function(height) { console.log(height); } /* theme: 'dark' */ });
 
   const h1 = document.querySelector('h1'),
   dropper = new Backdrop({

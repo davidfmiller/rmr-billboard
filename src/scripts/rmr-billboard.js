@@ -7,8 +7,10 @@
   const
   RMR = require('rmr-util'),
   CONST = {
-    billboard: 'rmr-billboard'
+    billboard: 'rmr-billboard',
+    types: ['cross', 'scroll']
   },
+  
 
   /**
     Billboard
@@ -27,7 +29,18 @@
       return;
     }
 
+    if (! RMR.Object.has(config, 'type')) {
+      config.type = 'scroll';
+    }
+    if (CONST.types.indexOf(config.type) === -1) {
+      console.warn('Invalid `rmr-billboard` type `' + config.type + '`; defaulting to `scroll`');
+      config.type = 'scroll';
+    }
+    this.type = config.type;
+
     this.node.classList.add(CONST.billboard);
+    this.node.classList.add('rmr-' + this.type);
+
     this.margin = RMR.Object.has(config, 'margin') && config.margin ? parseInt(config.margin, 10) : 0;
     this.listener = RMR.Object.has(config, 'listener') ? config.listener : null;
 
@@ -55,13 +68,20 @@
 
     // set initial size
     this.resize();
+    this.goToPane(0);
+  };
+
+  Billboard.prototype.getPanes = function() {
+    return RMR.Node.getAll(':scope > .rmr-pane', this.node);
   };
 
   Billboard.prototype.resize = function() {
 
+    this.node.classList.add('rmr-init');
+
     const
       height = window.innerHeight - this.margin,
-      panes = RMR.Node.getAll(':scope > .rmr-pane', this.node);
+      panes = this.getPanes();
 
     this.node.style.height = height + 'px';
 
@@ -83,20 +103,30 @@
    @return true if navigation was successful, false if not
    */
   Billboard.prototype.goToPane = function(index) {
+
     index = parseInt(index, 10);
 
     const
-      board = RMR.Node.get('.rmr-billboard'),
-      panes = RMR.Node.getAll(':scope > .rmr-pane', board),
-      pane = panes.length > index ? panes[index] : null,
-      height = board ? RMR.Node.getRect(board).height : 0;
+      panes = this.getPanes(),
+      pane = panes.length > index ? panes[index] : null;
 
     if (! pane) {
       console.error('Invalid rmr-billboard pane index `' + index +'`; only ' + panes.length + ' panes exist');
       return false;
     }
 
-    RMR.Node.scrollTo(board, index * height);
+    if (this.type === 'scroll') {
+      const height = RMR.Node.getRect(this.node).height;
+      RMR.Node.scrollTo(this.node, index * height);
+    } else if (this.type == 'cross') {
+
+      let i = 0;
+      panes.map((n) => {
+        i === index ? n.classList.add('rmr-on') : n.classList.remove('rmr-on');
+        i++;
+      });
+    } 
+
     return true;
   };
 
