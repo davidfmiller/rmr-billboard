@@ -79,6 +79,7 @@
 
   /**
    
+   @param index {Integer} - the 0-based of the pane that should be displayed
    @return true if navigation was successful, false if not
    */
   Billboard.prototype.goToPane = function(index) {
@@ -108,7 +109,6 @@
     RMR.Browser.scrollTo(height, 200);
   };
 
-  console.log(RMR);
   module.exports = Billboard;
 
 })();
