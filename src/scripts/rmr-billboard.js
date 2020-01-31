@@ -10,12 +10,11 @@
     billboard: 'rmr-billboard',
     types: ['cross', 'scroll']
   },
-  
 
   /**
     Billboard
     A billboard for your page
-    @param {object} config - theme {"dark"}, node {string|node}
+    @param {object} config - theme {"dark"}, node {string|node}, type {string}, margin {Integer}
    */
   Billboard = function(config) {
 
@@ -45,12 +44,12 @@
     this.listener = RMR.Object.has(config, 'listener') ? config.listener : null;
 
     const
-    self = this,
-    scroller = RMR.Node.create('div', { class: 'rmr-scroller' }),
-    theme = config.hasOwnProperty('theme') ? config.theme : null;
+      self = this,
+      scroller = RMR.Node.create('div', { class: 'rmr-scroller' }),
+      theme = RMR.Object.has(config, 'theme') ? config.theme : null;
 
     if (theme) {
-      this.node.classList.add(theme);
+      this.node.classList.add('rmr-' + theme);
     }
 
     if (RMR.Object.has(config, 'resize') && config.resize) {
@@ -71,10 +70,19 @@
     this.goToPane(0);
   };
 
+  /**
+   
+   
+   @return {Array} - array of all panes 
+   */
   Billboard.prototype.getPanes = function() {
     return RMR.Node.getAll(':scope > .rmr-pane', this.node);
   };
 
+  /**
+  
+   Resize billboard to occupy the appropriate space within the browser window
+   */
   Billboard.prototype.resize = function() {
 
     this.node.classList.add('rmr-init');
@@ -98,8 +106,9 @@
   };
 
   /**
+   Display a given pane within the billboard
    
-   @param index {Integer} - the 0-based of the pane that should be displayed
+   @param index {Integer} - the (0-based) index of the pane that should be displayed
    @return true if navigation was successful, false if not
    */
   Billboard.prototype.goToPane = function(index) {
@@ -109,6 +118,10 @@
     const
       panes = this.getPanes(),
       pane = panes.length > index ? panes[index] : null;
+
+    if (panes.length == 0) {
+      return;
+    }
 
     if (! pane) {
       console.error('Invalid rmr-billboard pane index `' + index +'`; only ' + panes.length + ' panes exist');
@@ -130,13 +143,17 @@
     return true;
   };
 
-
-  Billboard.prototype.scroll = function() {
+  /**
+   Scroll down to the content below the billboard (ie: it's `nextElementSibling`)
+   
+   @param duration {Integer, optional} - number of milliseconds over which the scroll will occur
+   */
+  Billboard.prototype.scroll = function(duration) {
     const
       node = RMR.Node.get('.' + CONST.billboard),
       height = parseInt(RMR.Node.getRect(node).bottom, 10) - this.margin;
 
-    RMR.Browser.scrollTo(height, 200);
+    RMR.Browser.scrollTo(height, duration ? parseInt(duration, 10) : 200);
   };
 
   module.exports = Billboard;
