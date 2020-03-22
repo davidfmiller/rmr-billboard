@@ -40,6 +40,7 @@
     this.node.classList.add(CONST.billboard);
     this.node.classList.add('rmr-' + this.type);
 
+    this.ratio = RMR.Object.has(config, 'ratio') && config.ratio ? parseFloat(config.ratio) : 1;
     this.margin = RMR.Object.has(config, 'margin') && config.margin ? parseInt(config.margin, 10) : 0;
     this.listener = RMR.Object.has(config, 'listener') ? config.listener : null;
 
@@ -88,7 +89,7 @@
     this.node.classList.add('rmr-init');
 
     const
-      height = window.innerHeight - this.margin,
+      height = (window.innerHeight * this.ratio) - this.margin,
       panes = this.getPanes();
 
     this.node.style.height = height + 'px';
