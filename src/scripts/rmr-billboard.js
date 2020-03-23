@@ -88,9 +88,15 @@
 
     this.node.classList.add('rmr-init');
 
+    let
+      height = (window.innerHeight * this.ratio) - this.margin;
+
     const
-      height = (window.innerHeight * this.ratio) - this.margin,
       panes = this.getPanes();
+
+    if (height < 0) {
+      height = 0;
+    }
 
     this.node.style.height = height + 'px';
 
