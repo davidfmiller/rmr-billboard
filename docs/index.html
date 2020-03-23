@@ -61,15 +61,18 @@ document.addEventListener('DOMContentLoaded', function() {
     theme: 'dark'
   });
 
-  const h1 = document.querySelector('h1'),
+  const h1 = document.querySelectorAll('h1'),
   dropper = new Backdrop({
     node: '.rmr-billboard',
     speed: 2,
     styles: { size: 'cover', attachment: 'scroll', position: '50% 50%' }
   });
-  dropper.drop({src: 'https://dfm.photography/assets/img/photos/web.desktop/luccata.jpg' });
+  dropper.drop({
+    src: 'https://dfm.photography/assets/img/photos/web.desktop/luccata.jpg'
+  });
 
-  h1.addEventListener('click', function(e) { board.scroll(); });
+  h1[0].addEventListener('click', function(e) { board.goToPane(1); });
+  h1[1].addEventListener('click', function(e) { board.goToPane(0); });
 });
 </script>
 
