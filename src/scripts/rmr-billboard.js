@@ -18,6 +18,8 @@
    */
   Billboard = function(config) {
 
+    if (! config) { config = {}; }
+
     if (! RMR.Object.has(config, 'node')) {
       config.node = '.' + CONST.billboard;
     }
