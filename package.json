@@ -1,6 +1,6 @@
 {
   "name": "rmr-billboard",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Billboard",
   "url": "https://davidfmiller.github.io/rmr-billboard/",
   "license": "ISC",
@@ -24,7 +24,7 @@
     "grunt-contrib-uglify": "^3.3.0",
     "grunt-contrib-watch": "^1.0.0",
     "uglify-es": "^3.3.4",
-    "webpack": "^5.92.0"
+    "webpack": "^5.94.0"
   },
   "dependencies": {
     "rmr-util": "^1.1.86"
